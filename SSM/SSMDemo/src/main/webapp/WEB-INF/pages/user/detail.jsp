@@ -1,3 +1,4 @@
+<%@ page import="com.springmvc.model.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -23,29 +24,11 @@
 <h1>这里是SpringMVC Demo首页</h1>
 
 <h3 class="temp">完整配置成功</h3>
-
-<button id="add">add user</button>
-
+<h4>${user.userName}</h4>
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-<script>
-    $("#add").click(function () {
-        $.ajax({
-            url:"/user/add",
-            data:{
-              name:"gao",
-                password:"123"
-            },
-            type: "POST",
-            success:function (data) {
-                alert(data);
-            }
-        });
-    });
-</script>
 </body>
 </html>

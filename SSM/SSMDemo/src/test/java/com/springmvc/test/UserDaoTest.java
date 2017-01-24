@@ -12,7 +12,7 @@ import javax.annotation.Resource;
  * Created by shidian on 2017/1/24.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:applicationContext.xml"})
+@ContextConfiguration(locations = {"classpath:spring/applicationContext.xml"})
 public class UserDaoTest {
     //注入dao实现类依赖
     @Resource

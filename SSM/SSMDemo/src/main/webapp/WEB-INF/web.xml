@@ -6,6 +6,7 @@
         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
         version="3.1"
 >
+
   <display-name>Archetype Created Web Application</display-name>
     <!--spring 核心监听器-->
     <listener>
@@ -14,7 +15,7 @@
     <!--设置监听器配置文件的路径-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:applicationContext.xml</param-value>
+        <param-value>classpath:spring/applicationContext.xml</param-value>
     </context-param>
     <!--core controller,mvc框架-->
   <servlet>
@@ -23,12 +24,13 @@
       <!--配置mvc的配置文件路径-->
     <init-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>classpath:mvc-dispatcher-servlet.xml</param-value>
+      <param-value>classpath:spring/mvc-dispatcher-servlet.xml</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
     <servlet-name>mvc-dispatcher</servlet-name>
+    <!--默认匹配所有请求-->
     <url-pattern>/</url-pattern>
   </servlet-mapping>
   <!--for post encoding, avoid for diff format-->
