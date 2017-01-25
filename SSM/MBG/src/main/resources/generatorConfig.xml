@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--导入属性配置文件-->
+    <properties resource="generator.properties"></properties>
+    <!--指定特定数据库的jdbc驱动jar包-->
+    <classPathEntry location="${jdbc.driverLocation}" />
+
+    <context id="MySqlTable" targetRuntime="MyBatis3">
+        <!--
+            suppressAllComments:阻止××生成注释，默认false
+            suppressDate       ：阻止生成的注释包含时间戳，默认是false
+            一般情况下由于MBG生成的注释信息没有任何价值，而且有时间戳
+            的情况下每次生成的注释都不一样，
+            使用××版本控制××的时候每次都会提交。
+            所以屏蔽
+        -->
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--jdbc数据库连接-->
+        <jdbcConnection driverClass="${driver}"
+                        connectionURL="${url}"
+                        userId="${username}"
+                        password="${password}">
+        </jdbcConnection>
+
+        <!--非必须，类型处理器，在数据库类型和java类型之间的转换控制-->
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!--model模型生成器，用来生成含有主键key的类，记录类 以及查询事例类
+                targetPackage     指定生成的model生成所在包名
+                targetProject     指定在该项目下所在的路径
+        -->
+        <javaModelGenerator targetPackage="pojo" targetProject="src/main/java">
+            <!--是否对model添加构造函数-->
+            <property name="constructorBased" value="true"/>
+            <!--是否允许子包，即targetPackage.schemaName.tableName-->
+            <property name="enableSubPackages" value="true" />
+            <!--建立的model对象是否 不可改变 ， 即生成的model对象不会有setter方法，只有构造函数-->
+            <property name="immutable" value="false"/>
+            <!--给model添加一个父类-->
+            <!--<property name="rootClass" value="com.springmvc.model.User"/>-->
+            <!--是否对类Char类型的列的数据进行trim操作-->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!--Mapper映射文件生成所在目录， 为每一个数据库的表生成对应的sqlMapper文件-->
+        <sqlMapGenerator targetPackage="mapper"  targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!--客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码
+                type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象
+                type="MIXEDMAPPER",生成基于注解的java model和相应的Mapper对象
+                type="XMLMAPPER"，生成SQLMap XML文件和独立的Mapper接口
+        -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="dao"  targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <!--定义Mapper.java 源代码中的ByExample（）方法的可观性，可选值有：
+                public,private,protected,default
+                注意：如果targetRuntime="MuBatis3",该参数被忽略
+             -->
+            <!--<property name="exampleMethodVisibility" value=""/>-->
+            <!--方法名计数器：Important note：同上-->
+            <!--<property name="methodNameCalculator" value=""/>-->
+            <!--为生成的接口添加父接口-->
+            <property name="rootInterface" value=""/>
+        </javaClientGenerator>
+
+        <!--对应数据库表 mysql可以加入组件自增 字段命名 忽略某字段-->
+        <!--<table schema="DB2ADMIN" tableName="ALLTYPES" domainObjectName="Customer" >-->
+            <!--<property name="useActualColumnNames" value="true"/>-->
+            <!--<generatedKey column="ID" sqlStatement="DB2" identity="true" />-->
+            <!--<columnOverride column="DATE_FIELD" property="startDate" />-->
+            <!--<ignoreColumn column="FRED" />-->
+            <!--<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />-->
+        <!--</table>-->
+        <table tableName="Agent" domainObjectName="Agent" >
+        </table>
+        <table tableName="Customer" domainObjectName="Customer" >
+        </table>
+        <table tableName="Order" domainObjectName="Order" >
+        </table>
+        <table tableName="Order_Action" domainObjectName="Order_Action" >
+        </table>
+        <table tableName="Productline" domainObjectName="Productline" >
+        </table>
+        <table tableName="User" domainObjectName="User" >
+        </table>
+
+    </context>
+</generatorConfiguration>
